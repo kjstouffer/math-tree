@@ -4,11 +4,24 @@
 package math.tree
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class FactoryFunctionTest {
-    @Test fun testAppHasAGreeting() {
+    @Test fun testDefaultValue() {
         val classUnderTest = FactoryFunction()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+        assertEquals(23, classUnderTest.evaluate())
+    }
+
+    @Test fun testComplicatedTree(){
+        // 5 + 6 * (4 + 5) * 3 = 167
+        val expression = Add(
+            Scalar(5),
+            Multiply(
+                Add(Scalar(4), Scalar(5)),
+                Multiply(Scalar(6), Scalar(3))
+            )
+        )
+        assertEquals(167, FactoryFunction(expression).evaluate())
     }
 }

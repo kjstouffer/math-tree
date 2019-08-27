@@ -11,23 +11,41 @@ class FactoryFunction(val expression: Expression = DEFAULT_EXPRESSION) {
     }
 }
 
+/**
+ * Expression interface for integer arithmetic
+ */
 interface Expression {
+    /**
+     * Computes the value of the expression
+     */
     fun compute(): Int
 }
 
-class Scalar(val value: Int) : Expression {
+/**
+ * Object holding a single integer
+ */
+class Scalar(private val value: Int) : Expression {
     override fun compute(): Int {
         return value
     }
 }
 
-class Add(val addend: Expression, val addend2: Expression): Expression{
+/**
+ * @param augend Number that is to be added to
+ * @param addend Number to add to the [augend]
+ */
+class Add(private val augend: Expression, private val addend: Expression): Expression{
     override fun compute(): Int {
-        return addend.compute() + addend2.compute()
+        return augend.compute() + addend.compute()
     }
-
 }
-class Multiply(val multiplier: Expression, val multiplicand: Expression): Expression {
+
+/**
+ * Evaluates multiplication of two Integer Expressions
+ * @param multiplier number to be multiplied
+ * @param multiplicand number to be multiplied by another
+ */
+class Multiply(private val multiplier: Expression, private val multiplicand: Expression): Expression {
     override fun compute(): Int {
         return multiplier.compute() * multiplicand.compute()
     }
