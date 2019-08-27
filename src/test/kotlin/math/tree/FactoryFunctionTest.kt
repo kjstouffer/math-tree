@@ -6,9 +6,9 @@ package math.tree
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
-class AppTest {
+class FactoryFunctionTest {
     @Test fun testAppHasAGreeting() {
-        val classUnderTest = App()
+        val classUnderTest = FactoryFunction()
         assertNotNull(classUnderTest.greeting, "app should have a greeting")
     }
 }
